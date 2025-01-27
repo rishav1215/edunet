@@ -1,0 +1,24 @@
+<div class="navbar fixed-top navbar-expand-lg bg-light ">
+    <div class="container">
+        <div class="d-flex ">
+            <a href="" class="navbar-brand ">
+                <img src="assets/images/logo.png" alt="" class="" width="40">
+            </a>
+            <form action="" method="get" class="d-flex">
+
+                <input type="search" size="40" placeholder="Search People" class="form-control">
+                <button type="submit" class="btn btn-dark">
+                    <i class="bi bi-search"></i>
+                </button>
+
+            </form>
+        </div>
+        <div class="navbar-nav">
+            <a href="" class="nav-item nav-link">Home</a>
+            <a href="" class="nav-item nav-link fw-bold text-black"><?=$user['firstname'];?></a>
+            <a href="logout.php" class="nav-item nav-link">Logout</a>
+
+
+        </div>
+    </div>
+</div>

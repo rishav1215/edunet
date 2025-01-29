@@ -67,34 +67,78 @@ include_once "includes/header.php";
         </div>
 
         <div class="col-5 pt-4">
+            <!--insert post from--->
             <div class="card">
                 <div class="card-body">
-                    <form action="" method="post">
-                        <textarea name="" rows="6" id="" placeholder="What's In Your Mind"
+                    <form action="actions/insert_post.php" method="post" enctype="multipart/form-data">
+                        <textarea name="content" rows="6" id="" placeholder="What's In Your Mind"
                             class="w-100 border-0"></textarea>
                         <div class="d-flex justify-content-between">
-                            <input type="file" name="" id="">
-                            <input type="submit" value="New Post" class="btn btn-success btn-sm">
+                            <input type="file" name="image">
+                            <input type="submit" value="New Post" name="send_post" class="btn btn-success btn-sm">
                         </div>
                     </form>
                 </div>
             </div>
-           <div class="card mt-1">
-            <div class="card-body">
-                <h4>
-                <i class="bi bi-person-circle text-primary"></i>    
-                imrishav__</h4>
-                <p>"i am not a great programmer <br>
-            i'm just a good programmer with great habits."</p>
-           <h6 class="text-primary fw-bold"> #programmer</h6>
-            <img src="assets/images/post.jpg" alt="" class="w-75" width="">
-           <div class="p-1">
-           <i class="bi bi-hand-thumbs-up p-2 text-primary"> like</i>
-           <i class="bi bi-chat-dots p-2 text-primary"> comment</i>
-           <i class="bi bi-share p-2 text-primary"> share</i>
-           </div>
+            <!----end post work--->
+
+            <!---calling post work --->
+
+            <?Php
+
+            $callingPost = $connect->query("select * from posts JOIN users ON posts.user_id = users.id ORDER BY post_id DESC");
+            while ($post = $callingPost->fetch_array()):
+                ?>
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex gap-2">
+                        <div class="d-flex">
+                            <img src="assets/images/dp/<?= $post['dp'] ?? "profile22.png" ?>" width="40px" alt="">
+                        </div>
+                        <div class="d-flex flex-column">
+                            <a href="" class="nav-link m-0 p-0 fw-medium text-capitalize"><strong>
+                                    <?= $post['firstname']; ?>
+                                    <?= $post['lastname']; ?>
+                                </strong></a>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                    class="text-muted" width="10px">
+                                    <path fill-rule="evenodd"
+                                        d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8Zm7.75-4.25a.75.75 0 0 0-1.5 0V8c0 .414.336.75.75.75h3.25a.75.75 0 0 0 0-1.5h-2.5v-3.5Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                               <Span class="small"><?= date("h: A D M Y",strtotime($post['date_of_post']));?></Span>
+
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <?php
+                    if ($post['content'] != "" || $post['content'] != NULL):
+                        echo "<p>" . $post['content'] . "</p>";
+                    endif;
+
+                    if ($post['image'] != "" || $post['image'] != NULL):
+                        echo "<img src='assets/post_image/" . $post['image'] . "' class='w-100'/>";
+                    endif;
+
+                    ?>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <span class="text-primary">
+                    <i class="bi bi-hand-thumbs-up"></i>    
+                    Like</span>
+                    <span class="text-primary">
+                    <i class="bi bi-chat"></i>    
+                    Comment</span>
+                    
+
+
+                </div>
             </div>
-           </div>
+            <?php endwhile; ?>
         </div>
         <div class="col-3 pt-3">
 
@@ -138,11 +182,11 @@ include_once "includes/header.php";
             </div>
 
         </div>
-        
+
 
 
         <div class="col-2 pt-4 bg-light h-full">
-        <i class="bi bi-0-circle text-success"> Active Friends</i>
+            <i class="bi bi-0-circle text-success"> Active Friends</i>
         </div>
 
 

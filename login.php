@@ -29,7 +29,7 @@
                 <div class="card-body px-3">
                     <h3 class="text-warning fw-bolder text-capitalize p-1">Login Here</h3>
                     <hr>
-                    <form action="" method="post">
+                    <form action="actions/login_action.php" method="post">
                         <div class="row">
                             <div class="mb-2 col">
                                 <label for="" class="small text-muted">Email</label>
@@ -44,7 +44,7 @@
                                     class="form-control rounded-0">
                             </div>
                         </div>
-                        <input type="submit" value="Login" name="create_account"
+                        <input type="submit" value="Login" name="login_account"
                             class="btn btn-success w-100 rounded-lg">
 
                 </div>

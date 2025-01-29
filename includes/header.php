@@ -14,9 +14,15 @@
             </form>
         </div>
         <div class="navbar-nav">
-            <a href="" class="nav-item nav-link">Home</a>
-            <a href="" class="nav-item nav-link fw-bold text-black"><?=$user['firstname'];?></a>
-            <a href="logout.php" class="nav-item nav-link">Logout</a>
+            <a href="" class="nav-item nav-link">
+            <i class="bi bi-house-door"></i>    
+            Home</a>
+            <a href="" class="nav-item nav-link fw-bold text-black">
+            <i class="bi bi-person-circle text-primary"></i>    
+            <?=$user['firstname'];?></a>
+            <a href="logout.php" class="nav-item nav-link">
+            <i class="bi bi-box-arrow-right"></i>  
+            Logout</a>
 
 
         </div>

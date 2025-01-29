@@ -29,7 +29,7 @@
                 <div class="card-body">
                     <h5 class="text-warning fw-bolder text-capitalize">create An Account</h5>
                     <hr>
-                    <form action="signup_action.php" method="post">
+                    <form action="actions/signup_action.php" method="post">
                         <div class="row">
                             <div class="mb-2 col">
                                 <label for="" class="small text-muted">First Name</label>
@@ -61,7 +61,7 @@
                             <div class="mb-2 col">
                                 <label for="" class="small text-muted">Month</label>
                                 <select name="months" id="" class="form-select rounded-0">
-                                    <option> Month</option>
+                                    <option>Month</option>
                                     <?php
                                     $months = ["jan", "Feb", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                                     foreach ($months as $month) {
@@ -89,9 +89,9 @@
                                 <label for="" class="small text-muted">Gender</label>
                                 <select name="gender" id="" class="form-select rounded-0">
                                     <option value="">Select Gender </option>
-                                    <option value="">Male </option>
-                                    <option value="">Female </option>
-                                    <option value="">Other</option>
+                                    <option value="male">Male </option>
+                                    <option value="female">Female </option>
+                                    <option value="other">Other</option>
 
 
 

@@ -25,9 +25,9 @@ $user = getUser();
 include_once "includes/header.php";
 ?>
 
-<div class="container-fluid">
-    <div class="row pt-5">
-        <div class="col-2 h-full bg-light pt-3">
+<div class="container-fluid ">
+    <div class="row pt-5 ">
+        <div class="col-2 h-full bg-light">
             <div class="nav d-flex flex-column">
                 <a href="" class="nav-link nav-item text-black fw-bold mt-3">
                     <i class="bi bi-person-circle text-primary"></i>
@@ -66,10 +66,10 @@ include_once "includes/header.php";
             </div>
         </div>
 
-        <div class="col-5 pt-4">
+        <div class="col-5 pt-4" >
             <!--insert post from--->
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" >
                     <form action="actions/insert_post.php" method="post" enctype="multipart/form-data">
                         <textarea name="content" rows="6" id="" placeholder="What's In Your Mind"
                             class="w-100 border-0"></textarea>
@@ -80,10 +80,7 @@ include_once "includes/header.php";
                     </form>
                 </div>
             </div>
-            <!----end post work--->
-
-            <!---calling post work --->
-
+            
             <?Php
 
             $callingPost = $connect->query("select * from posts JOIN users ON posts.user_id = users.id ORDER BY post_id DESC");
@@ -93,10 +90,10 @@ include_once "includes/header.php";
                 <div class="card-header">
                     <div class="d-flex gap-2">
                         <div class="d-flex">
-                            <img src="assets/images/dp/<?= $post['dp'] ?? "profile22.png" ?>" width="40px" alt="">
+                            <img src="assets/images/dp/<?= $post['dp'] ?? "profile22.png" ?>" width="45px" class="rounded-circle object-fit-cover " alt="">
                         </div>
                         <div class="d-flex flex-column">
-                            <a href="" class="nav-link m-0 p-0 fw-medium text-capitalize"><strong>
+                            <a href="profile.php?profile_id=<?= $post['user_id'];?>" class="nav-link m-0 p-0 fw-medium text-capitalize"><strong>
                                     <?= $post['firstname']; ?>
                                     <?= $post['lastname']; ?>
                                 </strong></a>
@@ -144,8 +141,8 @@ include_once "includes/header.php";
 
             <!-- Banner Ad -->
             <div class="container mt-5">
-                <div class="row">
-                    <div class="col-12">
+                <div class="row  ">
+                    <div class="col-12 d-flex flex-column ">
                         <div class="alert alert-info text-center" role="alert">
                             <h4 class="alert-heading">Special Offer!</h4>
                             <p>Get 50% off on all products this weekend! Don't miss out.</p>
@@ -186,7 +183,7 @@ include_once "includes/header.php";
 
 
         <div class="col-2 pt-4 bg-light h-full">
-            <i class="bi bi-0-circle text-success"> Active Friends</i>
+            <i class="bi bi-0-circle text-success position-fixed"> Active Friends</i>
         </div>
 
 

@@ -8,3 +8,29 @@
 .h-full{
     height:92vh!important;
 }
+.cover{
+    background-color: #e77813!important;
+    width: 100%!important;
+    height: 400px!important;
+}
+.dp-card{
+    width: 150px;
+    cursor: pointer!important;
+    height:150px!important;
+    object-fit: cover!important;
+
+}
+.card-img-top{
+    width: 148px!important;
+    cursor: pointer;
+    overflow: hidden!important;
+    height:150px!important;
+    object-fit: cover!important;
+
+}
+.profile-card{
+    margin-top:-100px;
+}
+.profile-title{
+    text-shadow: 2px 3px 2px black!important;
+}

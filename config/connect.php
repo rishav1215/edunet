@@ -29,11 +29,15 @@ function redirectIfNotAuth()
         redirect("login.php");
     }
 }
-function getUser(): array
+function getUser($user_id = null): array
 {
-    $email = $_SESSION['user'];
     global $connect;
-    $query = $connect->query("select * from users where email='$email'");
+    if ($user_id == null) {
+        $email = $_SESSION['user'];
+        $query = $connect->query("select * from users where email='$email'");
+    } else {
+        $query = $connect->query("select * from users where id='$user_id'");
+    }
     $userdata = $query->fetch_assoc();
 
     return $userdata;

@@ -53,7 +53,7 @@ $user = getUser();
                                     <label for="upload_dp">
                                         <input type="file" onchange="this.form.submit()" name="dp_image" id="upload_dp"
                                             hidden>
-                                            <img src="<?= ($user['dp']) ? "assets/images/dp/" . $user['dp'] : "assets/images//dp/profile22.png"; ?>"
+                                        <img src="<?= ($user['dp']) ? "assets/images/dp/" . $user['dp'] : "assets/images//dp/profile22.png"; ?>"
                                             alt="" class="card-img-top rounded-circle ">
 
                                     </label>
@@ -81,9 +81,117 @@ $user = getUser();
                         </form>
                     <?php endif; ?>
                 </div>
+                <div class="d-flex">
+                    <div class="col-6">
+                        <table class="table">
+                            <tr>
+                                <th>Email</th>
+                                <td><?= $user['email'];?></td>
+                            </tr>
+                            <tr>
+                                <th>Contact</th>
+                                <td><?= $user['contact'];?></td>
+                            </tr>
+                            <tr>
+                                <th>Gender</th>
+                                <td><?= $user['gender'];?></td>
+                            </tr>
+                            <tr>
+                                <th>Nationality</th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>DOB</th>
+                                <td><?= $user['day']. "-".$user['months']. "-" .$user['years'];?></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-6 gap-3 d-flex flex-column">
+                        <?php
+                            if(!isset($_GET['profile_id'])):?>
+                        
+                        <!--insert post from--->
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="actions/insert_post.php" method="post" enctype="multipart/form-data">
+                                    <textarea name="content" rows="6" id="" placeholder="What's In Your Mind"
+                                        class="w-100 border-0"></textarea>
+                                    <div class="d-flex justify-content-between">
+                                        <input type="file" name="image">
+                                        <input type="submit" value="New Post" name="send_post"
+                                            class="btn btn-success btn-sm">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <?php endif;?>
+
+                        <?Php
+                        $user_id = $user['id'];
+                        $callingPost = $connect->query("select * from posts JOIN users ON posts.user_id = users.id where users.id = $user_id ORDER BY post_id DESC");
+                        while ($post = $callingPost->fetch_array()):
+                            ?>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex gap-2">
+                                    <div class="d-flex">
+                                        <img src="assets/images/dp/<?= $post['dp'] ?? "profile22.png" ?>" width="45px"
+                                            class="rounded-circle object-fit-cover " alt="">
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <a href="profile.php?profile_id=<?= $post['user_id']; ?>"
+                                            class="nav-link m-0 p-0 fw-medium text-capitalize"><strong>
+                                                <?= $post['firstname']; ?>
+                                                <?= $post['lastname']; ?>
+                                            </strong></a>
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+                                                fill="currentColor" class="text-muted" width="10px">
+                                                <path fill-rule="evenodd"
+                                                    d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8Zm7.75-4.25a.75.75 0 0 0-1.5 0V8c0 .414.336.75.75.75h3.25a.75.75 0 0 0 0-1.5h-2.5v-3.5Z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                            <Span class="small">
+                                                <?= date("h: A D M Y", strtotime($post['date_of_post'])); ?>
+                                            </Span>
+
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-body">
+                                <?php
+                                if ($post['content'] != "" || $post['content'] != NULL):
+                                    echo "<p>" . $post['content'] . "</p>";
+                                endif;
+
+                                if ($post['image'] != "" || $post['image'] != NULL):
+                                    echo "<img src='assets/post_image/" . $post['image'] . "' class='w-100'/>";
+                                endif;
+
+                                ?>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between">
+                                <span class="text-primary">
+                                    <i class="bi bi-hand-thumbs-up"></i>
+                                    Like</span>
+                                <span class="text-primary">
+                                    <i class="bi bi-chat"></i>
+                                    Comment</span>
+
+
+
+                            </div>
+                        </div>
+                        <?php endwhile; ?>
+                    </div>
+                </div>
             </div>
             <div class="col-2"></div>
-            <div class="col-2 pt-5 bg-light h-full"></div>
+            <div class="col-2 pt-4 bg-light h-full" style="position:fixed;right:0;overflow-y:scroll">
+                <?php include_once "includes/online_friends.php"; ?>
+            </div>
         </div>
     </div>
 </body>

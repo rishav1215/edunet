@@ -34,3 +34,7 @@
 .profile-title{
     text-shadow: 2px 3px 2px black!important;
 }
+.online-friends:hover{
+    background-color: white!important;
+
+}

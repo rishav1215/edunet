@@ -27,7 +27,7 @@ include_once "includes/header.php";
 
 <div class="container-fluid ">
     <div class="row pt-5 ">
-        <div class="col-2 h-full bg-light">
+        <div class="col-2 h-full bg-light" style="position:fixed;left:0;height:100vh;">
             <div class="nav d-flex flex-column">
                 <a href="" class="nav-link nav-item text-black fw-bold mt-3">
                     <i class="bi bi-person-circle text-primary"></i>
@@ -66,10 +66,10 @@ include_once "includes/header.php";
             </div>
         </div>
 
-        <div class="col-5 pt-4" >
+        <div class="col-5 pt-4" style="margin-left:16.8%;">
             <!--insert post from--->
             <div class="card">
-                <div class="card-body" >
+                <div class="card-body">
                     <form action="actions/insert_post.php" method="post" enctype="multipart/form-data">
                         <textarea name="content" rows="6" id="" placeholder="What's In Your Mind"
                             class="w-100 border-0"></textarea>
@@ -80,7 +80,7 @@ include_once "includes/header.php";
                     </form>
                 </div>
             </div>
-            
+
             <?Php
 
             $callingPost = $connect->query("select * from posts JOIN users ON posts.user_id = users.id ORDER BY post_id DESC");
@@ -90,10 +90,12 @@ include_once "includes/header.php";
                 <div class="card-header">
                     <div class="d-flex gap-2">
                         <div class="d-flex">
-                            <img src="assets/images/dp/<?= $post['dp'] ?? "profile22.png" ?>" width="45px" class="rounded-circle object-fit-cover " alt="">
+                            <img src="assets/images/dp/<?= $post['dp'] ?? "profile22.png" ?>" width="45px"
+                                class="rounded-circle object-fit-cover " alt="">
                         </div>
                         <div class="d-flex flex-column">
-                            <a href="profile.php?profile_id=<?= $post['user_id'];?>" class="nav-link m-0 p-0 fw-medium text-capitalize"><strong>
+                            <a href="profile.php?profile_id=<?= $post['user_id']; ?>"
+                                class="nav-link m-0 p-0 fw-medium text-capitalize"><strong>
                                     <?= $post['firstname']; ?>
                                     <?= $post['lastname']; ?>
                                 </strong></a>
@@ -104,7 +106,9 @@ include_once "includes/header.php";
                                         d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8Zm7.75-4.25a.75.75 0 0 0-1.5 0V8c0 .414.336.75.75.75h3.25a.75.75 0 0 0 0-1.5h-2.5v-3.5Z"
                                         clip-rule="evenodd" />
                                 </svg>
-                               <Span class="small"><?= date("h: A D M Y",strtotime($post['date_of_post']));?></Span>
+                                <Span class="small">
+                                    <?= date("h: A D M Y", strtotime($post['date_of_post'])); ?>
+                                </Span>
 
                             </span>
                         </div>
@@ -125,19 +129,19 @@ include_once "includes/header.php";
                 </div>
                 <div class="card-footer d-flex justify-content-between">
                     <span class="text-primary">
-                    <i class="bi bi-hand-thumbs-up"></i>    
-                    Like</span>
+                        <i class="bi bi-hand-thumbs-up"></i>
+                        Like</span>
                     <span class="text-primary">
-                    <i class="bi bi-chat"></i>    
-                    Comment</span>
-                    
+                        <i class="bi bi-chat"></i>
+                        Comment</span>
+
 
 
                 </div>
             </div>
             <?php endwhile; ?>
         </div>
-        <div class="col-3 pt-3">
+        <div class="col-3 pt-3" style="position:fixed;right:0;overflow-y:scroll; margin-right:16%;">
 
             <!-- Banner Ad -->
             <div class="container mt-5">
@@ -182,13 +186,13 @@ include_once "includes/header.php";
 
 
 
-        <div class="col-2 pt-4 bg-light h-full">
-            <i class="bi bi-0-circle text-success position-fixed"> Active Friends</i>
-        </div>
-
-
-
+        <div class="col-2 pt-4 bg-light h-full" style="position:fixed;right:0;overflow-y:scroll">
+          <?php include_once "includes/online_friends.php";?> 
     </div>
+
+
+
+</div>
 </div>
 
 
